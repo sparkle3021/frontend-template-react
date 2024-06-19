@@ -1,57 +1,40 @@
-# Ant Design Pro
+<div align="center">
+  <h1>Frontend Template - React</h1>
+</div>
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+基于[Ant Design Pro V5](https://pro.ant.design)的开发脚手架
 
-## Environment Prepare
+## 特性
 
-Install `node_modules`:
+- 💡 移除了国际化，Jest，OpenAPI 等组件
+- 🔑 完整支持的代码风格规范和代码提交规范
 
-```bash
-npm install
+## 开发环境
+
+- node.js 20.9.0
+- pnpm >= 9
+
+## 使用
+
+### 开发
+
+只需要执行以下命令就可以在 http://localhost:8000 中看到
+
+```shell
+# 安装依赖
+pnpm i
+# 启动项目
+pnpm start
 ```
 
-or
+### 构建
 
-```bash
-yarn
+构建该应用只需要执行以下命令
+
+```shell
+pnpm build
 ```
 
-## Provided Scripts
+## 维护者
 
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
-
-Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
-
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+[十八](https://github.com/sparkle3021)
