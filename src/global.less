@@ -16,6 +16,7 @@ body,
 .ant-layout {
   min-height: 100vh;
 }
+
 .ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
   left: unset;
 }
@@ -35,15 +36,27 @@ ol {
   list-style: none;
 }
 
+/* 重置所有输入框的自动填充样式 */
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  /* 使用透明层覆盖默认背景色 */
+  -webkit-text-fill-color: inherit !important;
+  /* 保持文字颜色不变 */
+  transition: background-color 5000s ease-in-out 0s !important;
+  /* 防止颜色闪变，延缓过渡效果 */
+}
+
 @media (max-width: 768px) {
   .ant-table {
     width: 100%;
     overflow-x: auto;
+
     &-thead > tr,
     &-tbody > tr {
       > th,
       > td {
         white-space: pre;
+
         > span {
           display: block;
         }

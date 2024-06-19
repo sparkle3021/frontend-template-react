@@ -3,14 +3,41 @@ import { defineConfig } from '@umijs/max';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes/index';
-const { REACT_APP_ENV = 'dev' } = process.env;
+const { REACT_APP_ENV = 'dev', NODE_ENV } = process.env;
 export default defineConfig({
+  /**
+   * 网站标题
+   */
+  title: 'Frontend Template',
   /**
    * @name 开启 hash 模式
    * @description 让 build 之后的产物包含 hash 后缀。通常用于增量发布和避免浏览器加载缓存。
    * @doc https://umijs.org/docs/api/config#hash
    */
   hash: true,
+  /**
+   * @name 路由的配置，不在路由中引入的文件不会编译
+   * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
+   * @doc https://umijs.org/docs/guides/routes umi routes: https://umijs.org/docs/routing
+   */
+  routes,
+  /**
+   * 路由通过query传参
+   */
+  historyWithQuery: {},
+  /**
+   * 开发环境生成SourceMap
+   */
+  devtool: NODE_ENV === 'development' ? 'eval' : false,
+  /**
+   * 配置图片打包方式，超过10KB单独打包为一个图片，小于10KB打包为base64
+   */
+  inlineLimit: 10 * 1024,
+  /**
+   * 配置JS压缩方式
+   */
+  jsMinifier: 'terser',
+  jsMinifierOptions: {},
   /**
    * @name 兼容性设置
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
@@ -20,21 +47,14 @@ export default defineConfig({
   //   ie: 11,
   // },
   /**
-   * @name 路由的配置，不在路由中引入的文件不会编译
-   * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
-   * @doc https://umijs.org/docs/guides/routes
-   */
-  // umi routes: https://umijs.org/docs/routing
-  routes,
-  /**
+   * 如果不想要 configProvide 动态设置主题需要把这个设置为 default
+   * 只有设置为 variable， 才能使用 configProvide 动态设置主色调
    * @name 主题的配置
    * @description 虽然叫主题，但是其实只是 less 的变量设置
    * @doc antd的主题设置 https://ant.design/docs/react/customize-theme-cn
    * @doc umi 的theme 配置 https://umijs.org/docs/api/config#theme
    */
   theme: {
-    // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
-    // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
     'root-entry-name': 'variable',
   },
   /**
@@ -72,9 +92,8 @@ export default defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'Frontend Template',
   layout: {
-    locale: true,
+    locale: false,
     ...defaultSettings,
   },
   /**
@@ -120,12 +139,6 @@ export default defineConfig({
   ],
   //================ pro 插件配置 =================
   presets: ['umi-presets-pro'],
-  /**
-   * @name openAPI 插件的配置
-   * @description 基于 openapi 的规范生成serve 和mock，能减少很多样板代码
-   * @doc https://pro.ant.design/zh-cn/docs/openapi/
-   */
-  openAPI: [],
   mfsu: {
     strategy: 'normal',
   },

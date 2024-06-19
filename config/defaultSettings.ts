@@ -8,7 +8,7 @@ const Settings: ProLayoutProps & {
   logo?: string;
 } = {
   title: 'Frontend Template',
-  logo: 'logo.svg',
+  logo: '/logo.svg',
   navTheme: 'light',
   colorPrimary: '#1677FF',
   layout: 'mix',
