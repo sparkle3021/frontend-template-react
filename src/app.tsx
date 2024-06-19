@@ -6,7 +6,7 @@ import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal } from 'react';
 import defaultSettings from '../config/defaultSettings';
-import { errorConfig } from './requestErrorConfig';
+import { requestConfig } from './utils/http/requestConfig';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -135,5 +135,5 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  ...errorConfig,
+  ...requestConfig,
 };
