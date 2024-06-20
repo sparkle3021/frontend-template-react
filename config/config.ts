@@ -6,7 +6,7 @@ import routes from './routes/index';
 const { REACT_APP_ENV = 'dev', NODE_ENV } = process.env;
 export default defineConfig({
   /**
-   * 网站标题
+   * @name 网站标题 <标签页中的标题>
    */
   title: 'Frontend Template',
   /**
@@ -22,22 +22,32 @@ export default defineConfig({
    */
   routes,
   /**
-   * 路由通过query传参
+   * @name 设置路由history类型
+   * @doc https://umijs.org/docs/api/config#history
+   */
+  history: {
+    type: 'hash',
+  },
+  /**
+   * @name 路由通过query传参
+   * @doc https://umijs.org/docs/api/config#historywithquery
    */
   historyWithQuery: {},
   /**
-   * 开发环境生成SourceMap
+   * @name 开发环境生成SourceMap
+   * @doc https://umijs.org/docs/api/config#devtool
    */
   devtool: NODE_ENV === 'development' ? 'eval' : false,
   /**
-   * 配置图片打包方式，超过10KB单独打包为一个图片，小于10KB打包为base64
+   * @name 配置图片编译规则
+   * @doc https://umijs.org/docs/api/config#inlinelimit
    */
   inlineLimit: 10 * 1024,
   /**
-   * 配置JS压缩方式
+   * @name JS压缩方式
+   * @doc https://umijs.org/docs/api/config#jsminifier-webpack
    */
   jsMinifier: 'terser',
-  jsMinifierOptions: {},
   /**
    * @name 兼容性设置
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
@@ -106,9 +116,6 @@ export default defineConfig({
     plugins: ['duration'],
   },
   /**
-   * @name 国际化插件
-   * @doc https://umijs.org/docs/max/i18n
-   */ /**
    * @name antd 插件
    * @description 内置了 babel import 插件
    * @doc https://umijs.org/docs/max/antd#antd
@@ -131,17 +138,28 @@ export default defineConfig({
    * @description 配置 <head> 中额外的 script
    */
   headScripts: [
-    // 解决首次加载时白屏的问题
     {
       src: '/scripts/loading.js',
       async: true,
     },
   ],
   //================ pro 插件配置 =================
+  /**
+   * 配置额外的 Umi 插件集
+   * @doc https://umijs.org/docs/api/config#presets
+   */
   presets: ['umi-presets-pro'],
+  /**
+   * 配置基于 Module Federation 的提速功能
+   * @doc https://umijs.org/docs/api/config#mfsu
+   */
   mfsu: {
     strategy: 'normal',
   },
+  /**
+   * 修复 esbuild 压缩器自动引入的全局变量导致的命名冲突问题
+   * @doc https://umijs.org/docs/api/config#esbuildminifyiife
+   */
   esbuildMinifyIIFE: true,
   requestRecord: {},
 });
